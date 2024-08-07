@@ -1,0 +1,61 @@
+-- 1. Buscar o nome e ano dos filmes
+SELECT Titulo, AnoDeLancamento
+FROM Filmes;
+
+-- 2. Buscar o nome e ano dos filmes, ordenados por ordem crescente pelo ano
+SELECT Titulo, AnoDeLancamento
+FROM Filmes
+ORDER BY AnoDeLancamento ASC;
+
+-- 3. Buscar pelo filme de volta para o futuro, trazendo o nome, ano e a duração
+SELECT Titulo, AnoDeLancamento, DuracaoDoFilme
+FROM Filmes
+WHERE Titulo = 'De Volta para o Futuro';
+
+-- 4. Buscar os filmes lançados em 1997
+SELECT Titulo, AnoDeLancamento
+FROM Filmes
+WHERE AnoDeLancamento = 1997;
+
+-- 5. Buscar os filmes lançados APÓS o ano 2000
+SELECT Titulo, AnoDeLancamento
+FROM Filmes
+WHERE AnoDeLancamento > 2000;
+
+-- 6. Buscar os filmes com a duração maior que 100 e menor que 150, ordenando pela duração em ordem crescente
+SELECT Titulo, DuracaoDoFilme
+FROM Filmes
+WHERE DuracaoDoFilme > 100 AND DuracaoDoFilme < 150
+ORDER BY DuracaoDoFilme ASC;
+
+-- 7. Buscar a quantidade de filmes lançados no ano, agrupando por ano, ordenando pela duração em ordem decrescente
+SELECT AnoDeLancamento, COUNT(Titulo) AS QTD_FILMES
+FROM Filmes
+GROUP BY AnoDeLancamento
+ORDER BY DuracaoDoFilme DESC;
+
+-- 8. Buscar os Atores do gênero masculino, retornando o PrimeiroNome, UltimoNome
+SELECT PrimeiroNome, UltimoNome
+FROM Atores
+WHERE Genero = 'Masculino';
+
+-- 9. Buscar os Atores do gênero feminino, retornando o PrimeiroNome, UltimoNome, e ordenando pelo PrimeiroNome
+SELECT PrimeiroNome, UltimoNome
+FROM Atores
+WHERE Genero = 'Feminino'
+ORDER BY PrimeiroNome ASC;
+
+-- 10. Buscar o nome do filme e o gênero
+SELECT Titulo, Genero
+FROM Filmes;
+
+-- 11. Buscar o nome do filme e o gênero do tipo "Mistério"
+SELECT Titulo, Genero
+FROM Filmes
+WHERE Genero = 'Mistério';
+
+-- 12. Buscar o nome do filme e os atores, trazendo o PrimeiroNome, UltimoNome e seu Papel
+SELECT F.Titulo, A.PrimeiroNome, A.UltimoNome, FA.Papel
+FROM Filmes F
+JOIN FilmeAtores FA ON F.Id = FA.FilmeId
+JOIN Atores A ON FA.AtorId = A.Id;
